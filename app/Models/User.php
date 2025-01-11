@@ -45,4 +45,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Define the relationship with the Show model.
+     */
+    public function shows()
+    {
+        return $this->belongsToMany(Show::class, 'user_shows')
+                    ->withPivot('status', 'rating', 'comment')
+                    ->withTimestamps();
+    }
 }
